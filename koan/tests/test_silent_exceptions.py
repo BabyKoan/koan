@@ -34,7 +34,12 @@ APP_DIR = Path(__file__).parent.parent / "app"
 # Each entry is (filename, enclosing_function_name).
 # Uses function names instead of line numbers to survive unrelated code changes.
 # When adding: include a short justification comment.
-ALLOWLIST: Set[Tuple[str, str]] = set()
+ALLOWLIST: Set[Tuple[str, str]] = {
+    # pr_footer.py — resolve_footer_provider_model: best-effort provider/model lookup
+    # for PR footer metadata. Failures intentionally fall back to empty strings so
+    # PR creation never breaks when config is temporarily unavailable.
+    ("pr_footer.py", "resolve_footer_provider_model"),
+}
 # All entries narrowed to specific exception types as of 2026-02-27.
 
 
